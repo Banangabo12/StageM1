@@ -1,0 +1,3 @@
+2023-09-29_ParacouP14AllYears.csv (text/comma-separated-values) 30316577 bytes.
+2023-09-29_ParacouP16AllYears.csv (text/comma-separated-values) 32502689 bytes.
+2023-09-29_ParacouP15AllYears.csv (text/comma-separated-values) 33669443 bytes.
