@@ -3,7 +3,6 @@
 library(tidyverse)
 #Groupement de 4 parcelles
 
-X2023_09_29_ParacouP14AllYears <- read_csv("2023-09-29_ParacouP14AllYears.csv")
 read_csv("data/2023-09-29_ParacouP13AllYears.csv") %>% 
   bind_rows(read_csv("data/2023-09-29_ParacouP14AllYears.csv")) %>% 
   bind_rows(read_csv("data/2023-09-29_ParacouP15AllYears.csv")) %>% 
@@ -56,51 +55,57 @@ paracou  %>%
 
 
 
-paracou  %>%
-  select(idTree, CensusYear, CircCorr) 
-  pivot_wider(
-    names_from = CensusYear,
-    values_from = CircCorr
-  ) 
-   view Paracou test
-  
-  select(idTree, `1991`, `2022`)   
-  mutate(diametre = CircCorr/π ) %>% 
- 
-  mean() %>%
-  `/`(31)
-*`paracou2
 
 
 
-paracou  %>%
-  select(idTree, CensusYear, Species, CircCorr) %>% 
-  pivot_wider(
-    names_from = CensusYear,
-    values_from = CircCorr
-  ) %>% 
-  select(idTree, `1991`, `2022`, Species) %>% 
-  mutate(diametre = CircCorr/π ) %>% 
-  filter(!is.na(diametre = CircCorr/π )) %>% 
-  group_by(Species) %>%
-  summarise(diametre = CircCorr/π = mean(diametre = CircCorr/π) / 31)
 
 
-CircCorr/π = paste(paracou$`2022` - `1991` )
 
- `
-paracou %>% 
-  CircCorr/π = paste(`2022` - `1991` ))
-  mutate(diametre = CircCorr/π = paste(`2022` - `1991` )) %>%  
-  print() ->
-  paracou2
-  
-  
-  paracou_2022_p15_bota |> 
-    mutate(espece = paste(Genus, Species)) |> 
-    print() ->
-    paracou_2022_p15_bota_sp
- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
