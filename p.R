@@ -1,7 +1,6 @@
 
 
 library(tidyverse)
-library(BIOMASS)
 library(knitr)
 #Groupement de 4 parcelles
 
@@ -11,7 +10,6 @@ read_csv("data/2023-09-29_ParacouP13AllYears.csv") %>%
   bind_rows(read_csv("data/2023-09-29_ParacouP16AllYears.csv")) %>% 
   print() ->
   paracou
-
 
 
 
@@ -29,7 +27,9 @@ paracou  %>%
   paracoutest
 
  
-  
+# Calcule de la biomasse 
+install.packages("BIOMASS")
+library(BIOMASS)
 install.packages("httr2")
   library("httr2")
   
@@ -49,10 +49,10 @@ install.packages("httr2")
   # obtention des densités du bois
   
   dataWD <- getWoodDensity(
-    genus = paracoutest$Genus,
-    species =paracoutest$Species,
-    family = paracoutest$Family,
-    stand = paracoutest$idTree,
+    genus = .$Genus,
+    species =.$Species,
+    family = .$Family,
+    stand = .$idTree,
   )
   
   
@@ -71,13 +71,13 @@ install.packages("httr2")
     paracoutest
 
 
-
+  #Ajout des colonnes de la densité moyenne
   paracoutest %>% 
     mutate(moy_densite = dataWD$meanWD) %>% 
     print () -> 
     paracou_agb
   
-  
+  # Calcule de la biomasse sans information sur la hauteur 
   paracou_agb %>%
     mutate(
       biomasse = computeAGB(
@@ -88,6 +88,9 @@ install.packages("httr2")
     ) %>%
     print () ->
     paracou_agbfT
+  
+  
+  ## Cailcule de la biomasse avec la hauteur
   
   #Calcule de la hauteur avec les données Chave et al. (2012) tout en utilisant l'equation 6
   
