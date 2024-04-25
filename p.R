@@ -136,6 +136,103 @@ install.packages("httr2")
   
   
   
-
   
-   
+  
+  
+  
+  ## Calcule de la biomasse avec la hauteur. NB: ce n'est pas dans les objectifs
+  
+  #Calcule de la hauteur avec les données Chave et al. (2012) tout en utilisant l'equation 6
+  
+  
+  
+  
+  dataHchave <- retrieveH(
+    D = paracoutest $ diametre_2022,
+    coord = paracoutest[, c("Lon", "Lat")]
+  )
+  
+  
+  
+  
+  #Ajout de mean et H
+  
+  paracoutest %>% 
+    mutate(dataWD$meanWD) %>% 
+    mutate(dataHchave$H) %>% 
+    print () -> 
+    paracou_agb
+  
+            
+  
+  
+  #Calcule de la biomasse par arbre
+  
+  AGBtree <- computeAGB(
+    D = paracou_agb$diametre_2022,
+    WD = paracou_agb$`dataWD$meanWD`,
+    H = paracou_agb$`dataHchave$H`
+  )
+  
+  print(AGBtree)
+  
+  
+  paracou_agb  %>% 
+    mutate(AGBtree) %>% 
+    print () -> 
+    paracou_agb_t
+  
+  
+  # Comparaison  des modeles HD avec le diamètre en 2022 
+  
+  
+  
+  
+  H_22<-dataHchave$H
+  H_22
+  
+  # Modèle log2
+  
+  HDmodellog22 <- modelHD(
+    D =paracou_agb$diametre_2022,
+    H = H_22,
+    method = "log2",
+    useWeight = TRUE
+  ) 
+  
+  
+  # Modèle michaelis
+  
+  HDmodelmi22 <- modelHD(
+    D =paracou_agb$diametre_2022,
+    H = H_22,
+    method = "michaelis",
+    useWeight = TRUE
+  )  
+  
+  
+  
+  
+  # Modèle weibull
+  
+  HDmodelw22 <- modelHD(
+    D =paracou_agb$diametre_2022,
+    H = H_22,
+    method = "weibull",
+    useWeight = TRUE
+  )  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
